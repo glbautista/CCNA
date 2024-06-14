@@ -37,7 +37,7 @@ config t
 ipv6 unicast-routing
 int giga 2
  no shutdown
- ipv6 add dada:dada:fafa:fafa::/64 EUI-64
+ ipv6 add baba:bebe:fafa:fafe::/64 EUI-64
  do sh ipv6 int brief
 end
 
@@ -50,12 +50,12 @@ int e1/0
  do sh ipv6 int brief
 end
 
-Method3: STatic IPv6 address manual:
+Method3: STatic IPv6 address manual: IKAW LAHAT 
 @p1
 config t
 ipv6 unicast-routing
 int giga 2
- ipv6 add FACE:CAFE:ACED:DACE::FFFF/64
+ ipv6 add BEBE:FACE:ABCD:BABA::EEEE/64
  do sh ipv6 int brief
 end
 
@@ -94,7 +94,7 @@ TASK3: EXPENSIVE SWITCH/MANAGEABLE SWITCH:\ = 20k
 COREbaba12#sh mac address-table
 
 TASK4: Mastering the Switch BUttons:
-Mode Button: jailBreak/Password Forget
+Mode Button: jailBreak/Password Forget/ factory reset 
 Poweroff, Press Mode, until
 Switch:  flash_init
 	 delete flash:config.text
@@ -103,7 +103,7 @@ Switch:  flash_init
 
 TASK5: HOW TO SPOT A VERY HEALTHY SWITCH?
 super healthy: "all flashing green."
-amber/orange: needs help.
+amber/orange: needs help. - you are protected
 
 create vlans,
 transfer ports to vlans
@@ -126,7 +126,7 @@ NO spanning-tree vlan 1-999
 end
 @taas:
 config t
-spanning-tree vlan 1
+spanning-tree vlan 1-999
 end
 
 TASK7: HOW TO BECOME A WORLD-CLASS NETWORK ENGINEER
@@ -135,7 +135,7 @@ Master the 4 super Hereos of Switching
 Qpid: 802.1Q:trunking
 "make switch love each other!"LQ
 Darna: 802.1d: STP
-"slowly protect switches"
+"slowly protect switches" , wait 30 seconds 
 WonderWoman: 802.1w: rapidSTP
 "quickly,Brutally protect switches"
 SuperMan: 802.1s: MiSTP
@@ -191,13 +191,13 @@ kabit PC = 30s
 putol trunk, recover =30s, acceptable? BANK,HOst,Pol,Mil
 
 TASK10: Rapid Spanning-tree Protocol: 802.1w
-TAAs/BABA:
+TAAs/BABA: tikam si wonderWoman
 config t
 spanning-tree Mode Rapid-pvst
 do sh spanning-tree vlan 1
 configure 802.1w/RapidSTP:
 
-TAAS: RootBridge
+TAAS: RootBridge: laspagin si Wonderwoman
 config t
 spanning-tree Mode Rapid-pvst
 spanning-tree BackBoneFast
@@ -215,7 +215,7 @@ end
 
 802.1WDoes NOT forgive Mistakes/KIll it.
 #sh int status err-disabled 
-TAAS: bounce/UP/down
+TAAS: bounce/UP/down, bring BACK TO LIFE.
 config t
 int fa 0/3
  shut
@@ -246,7 +246,7 @@ exit
 
 step2: 
 create vlans:
-TAAS:
+TAAS:/D1
 config t
 vlan 11-19
 exit
@@ -348,14 +348,50 @@ standby 1 preempt
 standby 1 Priority 150
 standby 1 Track 1 decrement 60
 
-@BABA
+@D1 para realworld:
 config t
-hostname GLOBE
+Track 1 Int e1/0 line-protocol
+Int vlan 10
+standby 10 ip 10.2.1.3
+standby 10 preempt
+standby 10 Priority 150
+standby 10 Track 1 decrement 60
+
+COREBABA/GLOBE:
+config t
+hostname GLOBEITO
 Int vlan 1
 standby 1 ip 10.__.1.6
 standby 1 preempt
 standby 1 Priority 100
+
+@D2 para real world
+config t
+Int vlan 10
+standby 10 ip 10.2.1.3
+standby 10 preempt
+standby 10 Priority 100
 do sh standby
+
+#KUNG KAYA MO 80 TO 150K A MONTH: vrrp and glbp:
+@@ D1
+config t
+Track 1 Int e1/0 line-protocol
+Int vlan 10
+no standby 10
+VRRP 10 ip 10.2.1.3
+VRRP 10 preempt
+VRRP 10 Priority 150
+VRRP 10 Track 1 decrement 60
+
+@@ D2
+config t
+Int vlan 10
+no standby 10
+VRRP 10 ip 10.2.1.3
+VRRP 10 preempt
+VRRP 10 Priority 100
+
 
 TASK17: Port-Aggregation/Etherchannel:
 LACP:LINK AGGREGATION CONTROL PROTOCOL = ieee worldStandrad
