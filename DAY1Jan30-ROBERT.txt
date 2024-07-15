@@ -139,7 +139,7 @@ client-identifier 001a.0709.c258
 !!cisco unified call manager Express command
 !@@@CUCM-M
 config t
-   hostname CUCM-_
+   hostname CUCM-12
    enable secret pass
    service password-encryption
    no logging console
@@ -154,22 +154,22 @@ config t
       exec-timeout 0 0
    Int Fa 0/0
      no shutdown
-	 ip add 10._.100.8 255.255.255.0 
+	 ip add 10.12.100.8 255.255.255.0 
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern _00
+   destination-pattern 1200
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern _01
+   destination-pattern 1201
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern _02
+   destination-pattern 1202
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern _03
+   destination-pattern 1203
    port 0/0/3
 end
 
@@ -181,31 +181,31 @@ telephony-service
    no auto-reg-ephone
    max-ephones 5
    max-dn 20
-   ip source-address 10._.100.8 port 2000
+   ip source-address 10.12.100.8 port 2000
    create cnf-files
 ephone-dn 1
-  number _11
+  number 1211
 ephone-dn 2
-  number _22
+  number 1222
 ephone-dn 3
-  number _33
+  number 1233
 ephone-dn 4
-  number _44
+  number 1244
 ephone-dn 5
-  number _55
+  number 1255
 ephone-dn 6
-  number _66
+  number 1266
 ephone-dn 7
-  number _77
+  number 1277
 ephone-dn 8
-  number _88	
+  number 1288	
 Ephone 1
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.161b
   type 8945
   button 1:1 2:3 3:2 4:4
   restart
 Ephone 2
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.2325
   type 8945
   button 1:5 2:6 3:7 4:8
   restart  
@@ -302,7 +302,7 @@ dial-peer voice 82 Voip
 @@@@@@
 !@@@EDGE ROUTE CONFIG
 config t
-   hostname EDGE-m
+   hostname EDGE-12
    enable secret pass
    service password-encryption
    no logging console
@@ -317,15 +317,15 @@ config t
       exec-timeout 0 0
    Int Gi 0/0/0
      description INSIDE
-     ip add 10.m.m.1 255.255.255.0
+     ip add 10.12.12.1 255.255.255.0
 	 no shutdown
    Int Gi 0/0/1
      description OUTSIDE
-	 ip add 200.0.0.m 255.255.255.0
+	 ip add 200.0.0.12 255.255.255.0
 	 no shutdown
    Int Loopback 0
      description VIRTUALIP
-	 ip add m.0.0.1 255.255.255.255
+	 ip add 12.0.0.1 255.255.255.255
  end
 
  !!!STATIC ROUTING FOR MININUM WAGERS: 575php/day
@@ -348,7 +348,7 @@ conf t
  ip route 10.72.0.0 255.255.0.0 200.0.0.72
  ip route 10.81.0.0 255.255.0.0 200.0.0.81
  ip route 10.82.0.0 255.255.0.0 200.0.0.82
- ip route 10._.0.0 255.255.0.0 10._._.4
+ ip route 10._.0.0 255.255.0.0 10.12.12.4
  end
  
 *********************************************
@@ -356,19 +356,19 @@ Layer three/3 switch ROUTING = 300k up!!!
 @SWITCH/COREBABA
 conf t 
 ip routing
-ip route 0.0.0.0 0.0.0.0 10._._.1
+ip route 0.0.0.0 0.0.0.0 10.12.12.1
 end
 
 @CUCM:DEFAULT ROUTING( 0.0.0.0 0.0.0.0) FOR CUCM:
 conf t
 ip routing
-ip route 0.0.0.0 0.0.0.0 10._.100.4
+ip route 0.0.0.0 0.0.0.0 10.12.100.4
 end
 
 !How to Static Route windows Server:
 cmd
-route  add   10.0.0.0   mask   255.0.0.0    10._.1.4
-route  add  200.0.0.0   mask  255.255.255.0   10._.1.4
+route  add   10.0.0.0   mask   255.0.0.0    10.12.1.4
+route  add  200.0.0.0   mask  255.255.255.0   10.12.1.4
 
 ********************************************
 
