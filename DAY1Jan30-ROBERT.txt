@@ -202,12 +202,12 @@ ephone-dn 8
 Ephone 1
   Mac-address ccd8.c1fb.161b
   type 8945
-  button 1:1 2:3 3:2 4:4
+  button 1:5 2:6 3:7 4:8
   restart
 Ephone 2
   Mac-address ccd8.c1fb.2325
   type 8945
-  button 1:5 2:6 3:7 4:8
+  button 1:1 2:2 3:3 4:4
   restart  
 end
 
@@ -234,14 +234,14 @@ exit
 
 !OUTGOING CALL FROM CUCM TO OTHER CUCM.
 configure terminal
-! dial-peer voice 11 Voip
-! destination-pattern 11..
-! session target ipv4:10.11.100.8
-! codec g711ULAW
-dial-peer voice 12 Voip
- destination-pattern 12..
- session target ipv4:10.12.100.8
- codec g711ULAW
+dial-peer voice 11 Voip
+destination-pattern 11..
+session target ipv4:10.11.100.8
+codec g711ULAW
+!dial-peer voice 12 Voip
+!destination-pattern 12..
+!session target ipv4:10.12.100.8
+!codec g711ULAW
 dial-peer voice 21 Voip
  destination-pattern 21..
  session target ipv4:10.21.100.8
@@ -348,7 +348,7 @@ conf t
  ip route 10.72.0.0 255.255.0.0 200.0.0.72
  ip route 10.81.0.0 255.255.0.0 200.0.0.81
  ip route 10.82.0.0 255.255.0.0 200.0.0.82
- ip route 10._.0.0 255.255.0.0 10.12.12.4
+ ip route 10.12.0.0 255.255.0.0 10.12.12.4
  end
  
 *********************************************
