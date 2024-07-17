@@ -1,0 +1,175 @@
+TASK4 DYNAMIC ROUTING: not static. Kill all Static/default
+
+HELLO:	RID
+	AID
+	SM
+	AUTH TYPE
+HELLO DEAD
+	DR/BDR
+
+How to configure OSPF:
+All areas less than 50 devices must use area 0
+
+@EDGE
+config t
+no router ospf 1
+router ospf 1
+router-id 12.0.0.1 
+network 10.12.12.0 0.0.0.255 area 0
+network 12.0.0.1 0.0.0.0 area 0
+network 200.0.0.0 0.0.0.255 area 0
+
+
+@COREBaba
+
+config t
+no router ospf 1
+router ospf 1
+network 10.12.1.0 0.0.0.255 area 0
+network 10.12.10.0 0.0.0.255 area 0
+network 10.12.12.0 0.0.0.255 area 0
+network 10.12.50.0 0.0.0.255 area 0
+network 10.12.100.0 0.0.0.255 area 12
+
+@CUCM
+config t
+no router ospf 1
+router ospf 1
+network 10.12.100.0 0.0.0.255 area 12
+
+HOW TO MONITOR OSPF IN THE EXAM.
+ospf ELECTION: "Dite ELF"
+
+Down: NO Adjacency, hello sent
+Init: build adjaceny
+TwoWay:Hello was received
+Exstart: Database description: DBd
+Exchange: Linkstate Updates
+Loading: routing is being loaded.
+FULL:
+
+
+TASK5: ENHANCED INTERIOR GATEWAY ROUTING PROTOCOL: EIGRP
+ang PROTOCOL NG PANG MAYAMAN (CISO ONLY
+
+kills OSPF:
+
+config t
+no router ospf 1
+end
+
+
+CCNA: static, default, ospf, IPv6: heavy
+CCNP: eigrp
+
+TASK6: CONFIGURING cisco cloud services router
+
+config t
+no logging console
+
+
+TASK7: Configure IPv6 in Cisco CloudServiceRouter
+
+Method1: autoconfig: 100% automatic
+
+config t
+line vty 0 14
+exec-timeout 0 0
+ipv6 Unicast-routing
+int Gi 2
+ipv6 enable
+ipv6 address autoconfig
+do sh ipv6 int brief
+
+Method2: Extended UserID/EUI-64 Method: 50% ikaw, 50% auto
+
+config t
+ipv6 unicast-routing
+int gi 2
+no shut
+ipv6 address face:cafe:aced:dace::/64 eui-64
+ipv6 address dada:0123:bebe:caca::/64 eui-64
+do sh ipv6 int brief
+
+
+Accenture is using: face:cafe:aced::/48
+But will have subnet: pilot 50 offices.
+Use CAI: Convert, Add, IchambaMo
+Convert: 50
+AddToOrig/: /48+ /6 = /54
+ichambaMo: 00 04 06 
+
+Accenture is using: fafa:baba:dada::/68
+But will have subnet: pilot 240 offices.
+Use CAI: Convert, Add, IchambaMo
+Convert: 240is bits: 8bits
+AddToOrig/: /48+ /6 = /54
+ichambaMo: 00, 01, 02, 03, 04
+
+
+TELUS is using: fafa:baba:dada::/48
+But will have subnet: pilot 95 offices.
+Use CAI: Convert, Add, IchambaMo
+Convert: 95 is bits: 7 bits
+AddToOrig/: 48 + /7 =55
+
+fafa:baba:dada:00
+fafa:baba:dada:02
+fafa:baba:dada:04
+fafa:baba:dada:06
+fafa:baba:dada:08
+fafa:baba:dada:0A
+
+VXI is using: fafa:baba:dada::/48
+But will have subnet: pilot 800 offices.
+Use CAI: Convert, Add, IchambaMo
+Convert: 800 is bits: 10 bits
+AddToOrig/: 48 + /10 =58
+
+fafa:baba:dada:000
+fafa:baba:dada:004
+fafa:baba:dada:008
+fafa:baba:dada:00C
+fafa:baba:dada:010
+fafa:baba:dada:014
+fafa:baba:dada:018
+fafa:baba:dada:01c
+fafa:baba:dada:020
+
+DEPLOY THIS IN REALWORD:
+
+config t
+int loopback 1
+ipv6 address fafa:baba:dada:004::1/58
+int loopback 2
+ipv6 address fafa:baba:dada:008::1/58
+int loopback 3
+ipv6 address fafa:baba:dada:00c::1/58
+int loopback 4
+ipv6 address fafa:baba:dada:010::1/58
+int loopback 5
+ipv6 address fafa:baba:dada::014::1/58
+do sh ipv6 int brief
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
