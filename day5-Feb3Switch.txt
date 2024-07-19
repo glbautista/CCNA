@@ -328,7 +328,7 @@ BABA: sh vlan brief:
 cpu1: vlan 11-19
 cpu2: vlan 21-29
 cpu3: vlan 31-39
-@TAAs/BABA:
+@TAAs/BABA: D1, D2, A1, A2
 CONFIG T
 spanning-tree mode Mst
 spanning-tree mst configuration
